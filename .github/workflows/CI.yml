@@ -1,6 +1,5 @@
 name: CI
 
-# Trigger the workflow on push and pull request events to the main branch
 on:
   push:
     branches:
@@ -26,6 +25,14 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Install Make
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y make
+
+      - name: Verify Make Installation
+        run: make --version
+
       - name: Cache pip dependencies
         uses: actions/cache@v3
         with:
@@ -34,16 +41,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Install Make
-        run: sudo apt-get install -y make
-
       - name: Create Virtual Environment
         run: make venv
 
       - name: Install Dependencies
         run: make install
         env:
-          # Ensure that the virtual environment's pip is used
           PATH: .venv/bin:${{ env.PATH }}
 
       - name: Run Model Tests
@@ -74,4 +77,3 @@ jobs:
         with:
           name: python-package
           path: dist/*.whl
-
