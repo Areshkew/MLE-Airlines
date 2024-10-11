@@ -1,4 +1,7 @@
 <!-- Documentation and Explanations -->
+# Requirements
+ - No dependencies were originally changed. 
+ - Python version used: 3.10.14
 
 # Part I
 - Model Choosing: XgBoost
@@ -8,3 +11,5 @@
     For the improved model I chose **XGBoost with Feature Importance and with Balance** because the balancing of class weights further ensures that the model pays equal attention to both classes, reducing the risk of bias towards the majority class and enhancing the detection of the minority class.
 
     A balance betwen precision and recall is desirable, and this is often captured using metrics like the F1 score.
+
+- The model hyperparameters were adjusted according to our data analysis, in this case we used a scale_pos_weight of 4.40 aproximately.
