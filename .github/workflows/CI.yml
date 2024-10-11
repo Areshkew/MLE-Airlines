@@ -1,0 +1,77 @@
+name: CI
+
+# Trigger the workflow on push and pull request events to the main branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.10.14]  # Specify the Python version you are using
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install Make
+        run: sudo apt-get install -y make
+
+      - name: Create Virtual Environment
+        run: make venv
+
+      - name: Install Dependencies
+        run: make install
+        env:
+          # Ensure that the virtual environment's pip is used
+          PATH: .venv/bin:${{ env.PATH }}
+
+      - name: Run Model Tests
+        run: make model-test
+        env:
+          PATH: .venv/bin:${{ env.PATH }}
+
+      - name: Run API Tests
+        run: make api-test
+        env:
+          PATH: .venv/bin:${{ env.PATH }}
+
+      - name: Build Python Package
+        run: make build
+        env:
+          PATH: .venv/bin:${{ env.PATH }}
+
+      - name: Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: reports/
+
+      - name: Upload Build Artifact
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-package
+          path: dist/*.whl
+
