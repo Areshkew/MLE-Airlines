@@ -16,6 +16,9 @@ jobs:
       matrix:
         python-version: [3.10.14]  # Specify the Python version you are using
 
+    env:
+      PATH: .venv/bin:${{ env.PATH }}  # Prepend .venv/bin to PATH for all steps
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -31,7 +34,7 @@ jobs:
           sudo apt-get install -y make
 
       - name: Verify Make Installation
-        run: make --version
+        run: make --version  # Optional: Verify that 'make' is installed correctly
 
       - name: Cache pip dependencies
         uses: actions/cache@v3
@@ -46,23 +49,15 @@ jobs:
 
       - name: Install Dependencies
         run: make install
-        env:
-          PATH: .venv/bin:${{ env.PATH }}
 
       - name: Run Model Tests
         run: make model-test
-        env:
-          PATH: .venv/bin:${{ env.PATH }}
 
       - name: Run API Tests
         run: make api-test
-        env:
-          PATH: .venv/bin:${{ env.PATH }}
-
+        
       - name: Build Python Package
         run: make build
-        env:
-          PATH: .venv/bin:${{ env.PATH }}
 
       - name: Upload Test Reports
         if: always()
