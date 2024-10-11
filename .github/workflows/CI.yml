@@ -1,9 +1,6 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -15,9 +12,6 @@ jobs:
     strategy:
       matrix:
         python-version: [3.10.14]  # Specify the Python version you are using
-
-    env:
-      PATH: .venv/bin:${{ env.PATH }}  # Prepend .venv/bin to PATH for all steps
 
     steps:
       - name: Checkout Repository
@@ -33,31 +27,31 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y make
 
-      - name: Verify Make Installation
-        run: make --version  # Optional: Verify that 'make' is installed correctly
-
-      - name: Cache pip dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
       - name: Create Virtual Environment
-        run: make venv
+        run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip install -U pip
 
       - name: Install Dependencies
-        run: make install
+        run: |
+          source .venv/bin/activate
+          make install
 
       - name: Run Model Tests
-        run: make model-test
+        run: |
+          source .venv/bin/activate
+          make model-test
 
       - name: Run API Tests
-        run: make api-test
-        
+        run: |
+          source .venv/bin/activate
+          make api-test
+
       - name: Build Python Package
-        run: make build
+        run: |
+          source .venv/bin/activate
+          make build
 
       - name: Upload Test Reports
         if: always()
