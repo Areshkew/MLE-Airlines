@@ -36,7 +36,7 @@ jobs:
         with:
           appSourcePath: ${{ github.workspace }}
           _dockerfilePathKey_: _dockerfilePath_
-          registryUrl: 
+          registryUrl: mleregistry.azurecr.io
           registryUsername: ${{ secrets.MLEMODELAPI_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.MLEMODELAPI_REGISTRY_PASSWORD }}
           containerAppName: mle-model-api
