@@ -52,17 +52,3 @@ jobs:
         run: |
           source .venv/bin/activate
           make build
-
-      - name: Upload Test Reports
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-reports
-          path: reports/
-
-      - name: Upload Build Artifact
-        if: success()
-        uses: actions/upload-artifact@v3
-        with:
-          name: python-package
-          path: dist/*.whl
