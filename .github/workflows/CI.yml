@@ -47,8 +47,3 @@ jobs:
         run: |
           source .venv/bin/activate
           make api-test
-
-      - name: Build Python Package
-        run: |
-          source .venv/bin/activate
-          make build
