@@ -14,6 +14,9 @@
 
 - The model hyperparameters were adjusted according to our data analysis, in this case we used a scale_pos_weight of 4.40 aproximately.
 
+- Test Result:
+![Test Result for MODEL](images/test1.jpeg)
+
 
 # Part II
 - I decided to train and load the model during app startup because it ensures that the model is ready for use as soon as the application is launched instead of using a model file for simplicity and to avoid the overhead of uploading files. This approach streamlines the process, as it eliminates the need to manage and store separate model files, reducing potential points of failure.
@@ -47,3 +50,6 @@
 
     Also as I loaded my model on api startup, I needed to configure the tests properly according to: 
         [Advanced | Testing Events (FastApi)](https://fastapi.tiangolo.com/advanced/testing-events/)
+
+- Test Result:
+![Test Result for MODEL](images/test2.jpeg)
