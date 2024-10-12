@@ -15,7 +15,7 @@
 - The model hyperparameters were adjusted according to our data analysis, in this case we used a scale_pos_weight of 4.40 aproximately.
 
 - Test Result:
-![Test Result for MODEL](images/test1.jpeg)
+![Test Result for MODEL](/images/test1.jpeg)
 
 
 # Part II
@@ -52,4 +52,9 @@
         [Advanced | Testing Events (FastApi)](https://fastapi.tiangolo.com/advanced/testing-events/)
 
 - Test Result:
-![Test Result for MODEL](images/test2.jpeg)
+![Test Result for MODEL](/images/test2.jpeg)
+
+# Part III
+
+# Part IV
+- CI Evidence (You can check also in closed pull request): 
