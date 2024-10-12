@@ -1,4 +1,7 @@
 <!-- Documentation and Explanations -->
+# Note:
+- I am using free azure plan and the server location is in Australia East, so we have to be patient some times :) Thank u for understanding!
+
 # Requirements
  - No dependencies were originally changed. 
  - Python version used: 3.10.14
