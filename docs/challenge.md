@@ -1,6 +1,6 @@
 <!-- Documentation and Explanations -->
 # Note:
-- I am using free azure plan and the server location is in Australia East, so we have to be patient some times :) Thank u for understanding!
+- I am using free azure plan and the server location is in Australia East, so we have to be patient some times :) Thank u for understanding! (Once you get connection to the server it will work properly, is just the location). 
 
 # Requirements
  - No dependencies were originally changed. 
