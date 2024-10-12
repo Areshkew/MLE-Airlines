@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import ANY
 
-from fastapi.testclient import TestClient
+from tests.custom_testclient import TestClient
 from mockito import when
 import numpy as np
 from challenge.api import app
