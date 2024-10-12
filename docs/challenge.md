@@ -55,7 +55,16 @@
 ![Test Result for MODEL](/images/test2.jpeg)
 
 # Part III
+- I decided to deploy my model in azure. This workflow is designed to trigger automatic deployments for the mle-model-api whenever changes are pushed to the main branch.
+    1. The workflow begins by checking out the repository to the specified branch and proceeds to authenticate with Azure using OpenID Connect.
+    2. Following successful authentication, it builds and pushes the container image to the Azure Container Registry.
+
+- Stress Test Evidence:
+![Stress Test Evidence](/images/evidence2.jpeg)
 
 # Part IV
 - CI Evidence (You can check also in closed pull request): 
 ![CI Evidence](/images/evidence1.jpeg)
+
+- CD Evidence (You can check also in actions):
+![CD Evidence](/images/evidence3.jpeg)
