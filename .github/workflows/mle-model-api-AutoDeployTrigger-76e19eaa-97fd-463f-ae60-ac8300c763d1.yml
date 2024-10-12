@@ -41,7 +41,7 @@ jobs:
           registryPassword: ${{ secrets.MLEMODELAPI_REGISTRY_PASSWORD }}
           containerAppName: mle-model-api
           resourceGroup: mle-demo
-          imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
+          imageToBuild: mleregistry.azurecr.io/mle-model-api:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
 
